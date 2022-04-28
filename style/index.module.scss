@@ -1,0 +1,135 @@
+.chatRoom {
+  width: 100%;
+  height: 100vh;
+  background: url("../assests/images/wall.jpg");
+  position: relative;
+  padding: 5px;
+
+  .messages {
+    width: 100%;
+    display: flex;
+    height: 94vh;
+    overflow: auto;
+    padding: 10px;
+    gap: 10px;
+    flex-direction: column;
+
+    > span:nth-child(odd) {
+      align-self: flex-end;
+    }
+
+    > span:nth-child(even) {
+      align-self: center;
+    }
+
+    > span:nth-child(3n-1) {
+      align-self: flex-start;
+
+    }
+
+    > span:nth-child(3n-2) {
+      align-self: flex-end;
+      transform: translate(-80%, 0%) rotate(6deg);
+      box-shadow: -30px 10px 20px rgba(0, 0, 0, .7);
+
+      &:hover {
+        box-shadow: -40px 10px 25px rgba(0, 0, 0, .7);
+      }
+
+    }
+
+    > span:nth-child(5n-2) {
+      align-self: flex-end;
+      transform: translate(-200%, 0%) rotate(6deg);
+      box-shadow: -30px 10px 20px rgba(0, 0, 0, .7);
+
+      &:hover {
+        box-shadow: -40px 10px 25px rgba(0, 0, 0, .7);
+      }
+
+    }
+
+    > span:nth-child(5n-1) {
+      align-self: flex-end;
+
+      transform: translate(-20%, 0%) rotate(-6deg);
+
+    }
+
+    > span:nth-child(7n-1) {
+      align-self: flex-start;
+      transform: translate(100%, 0%) rotate(-6deg);
+
+    }
+
+    > span:nth-child(8n-1) {
+      align-self: flex-start;
+      transform: translate(20%, 0%) rotate(-6deg);
+    }
+
+    > span {
+      position: relative;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #000;
+      background: #ffc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      width: 17em;
+      text-align: center;
+      -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, .7);
+      //box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+      -moz-transition: -moz-transform .15s linear;
+      -o-transition: -o-transform .15s linear;
+      -webkit-transition: -webkit-transform .15s linear;
+      font-weight: bold;
+      padding: 10px;
+      margin: 10px;
+      -webkit-transform: rotate(-6deg);
+      -o-transform: rotate(-6deg);
+      -moz-transform: rotate(-6deg);
+      box-shadow: 30px 10px 20px rgba(0, 0, 0, .7);
+      transition: all 0.3s;
+      overflow: auto;
+      word-break: break-all;
+      &:hover {
+        box-shadow: 40px 10px 25px rgba(0, 0, 0, .7);
+        cursor: crosshair;
+      }
+      &:after{
+        width: 10px;
+        height: 10px;
+        content: "";
+        top: 0;
+        position: absolute;
+        background: crimson;
+        padding: 1px;
+        border-radius: 20px;
+
+      }
+    }
+  }
+
+  .form {
+    width: 100%;
+    padding: 5px 30px;
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    gap: 10px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    input{
+      border-radius: 5px;
+      background: floralwhite;
+      text-align: right;
+    }
+    button{
+      border-radius: 5px;
+    }
+  }
+}
