@@ -132,4 +132,14 @@
       border-radius: 5px;
     }
   }
+
+}
+.modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img{
+    cursor: pointer;
+  }
 }
