@@ -9,13 +9,13 @@ const Index = () => {
     console.log(ref)
     const [messages , setMessages] = useState([
         {
-            message : "یو واساپ ما نیگا"
+            message : "متن تستی 1"
         },
         {
-            message: "اون چیه؟ با من لاس میزنی؟"
+            message: "متن تستی 2"
         },
         {
-            message: "واچو نو بوت رولینگ داون این د دییپ"
+            message: "متن تستی 3"
         },
 
     ])
@@ -33,7 +33,7 @@ const Index = () => {
                 animate={{ pathLength: 1 }}
                 transition={{ duration: 2, type: "tween" }}
                 className={style.messages}
-            >         {
+            >         {new Date(items?.createdAt.replace(/[^:\d.-]/g, ' ')).toLocaleDateString('fa-IR')
                     messages.map((item , index)=>{
                         return(
 
