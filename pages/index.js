@@ -4,22 +4,22 @@ import style from "../style/index.module.scss"
 import 'antd/dist/antd.css';
 import React from 'react'
 import {motion} from "framer-motion"
-// pages/index.tsx
 import {PrismaClient} from '@prisma/client';
-import {CloseOutlined} from '@ant-design/icons';
-import {browserName} from "react-device-detect";
+import {CloseOutlined} from '@ant-design/icons'; //close icon for the note
+import {browserName} from "react-device-detect"; //this component will show us the user browser
 const prisma = new PrismaClient();
 
 
+//Getting messages from database
 export async function getServerSideProps() {
-    const userMessages = await prisma.user.findMany();
+    const userMessages = await prisma.user.findMany(); //getting data with prisma
     return {
         props: {
             initialMessages: userMessages
         }
     }
 }
-
+//this function would save the message in database with POST method
 async function savedMessage(message) {
     const response = await fetch('/api/contacts', {
         method: "POST",
@@ -30,28 +30,26 @@ async function savedMessage(message) {
     }
     return await response.json();
 }
-
-
-//here we delete the message
-async function deleteMessage(messageContent) {
+//here we delete the message by Index
+async function deleteMessage(messageContent , setContent , index , content) {
     const response = await fetch('/api/delete', {
         method: "Delete",
         body: JSON.stringify(messageContent)
     })
     if (response.ok) {
-
+        //here we are deleteing the message from our array if response was ok. if you know a better way just tell me please
+        setContent(content.filter((x , y)=> y !== index))
     }
     return await response.json();
 }
-
-
+//the page content function
 export default function Index ({initialMessages}) {
     const [content, setContent] = useState(initialMessages)
     console.log(content)
     const input = useRef(null)
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [inputValue, setInputValue] = useState("")
-    // handler
+    // handlers
     const handleSubmitText = async function () {
         await savedMessage(
             {
@@ -104,8 +102,7 @@ export default function Index ({initialMessages}) {
                                   key={index}>{item.message ? item.message : item.toString()}
                                 <div className={style.deleteIcon}>
                                     <span onClick={()=>{
-                                        deleteMessage(item.message)
-
+                                        deleteMessage(item.message , setContent , index , content)
                                     }}><CloseOutlined /></span>
                                 </div>
                             </span>
