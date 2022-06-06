@@ -6,17 +6,16 @@ import React from 'react'
 import {motion} from "framer-motion"
 // pages/index.tsx
 import {PrismaClient} from '@prisma/client';
-
+import {CloseOutlined} from '@ant-design/icons';
+import {browserName} from "react-device-detect";
 const prisma = new PrismaClient();
 
 
 export async function getServerSideProps() {
     const userMessages = await prisma.user.findMany();
-    console.log(userMessages);
-
     return {
         props: {
-            messages: userMessages
+            initialMessages: userMessages
         }
     }
 }
@@ -26,37 +25,48 @@ async function savedMessage(message) {
         method: "POST",
         body: JSON.stringify(message)
     });
+    if (!response.ok) {
+        throw new Error(response.statusText);
+    }
     return await response.json();
 }
 
+
+//here we delete the message
 async function deleteMessage(messageContent) {
     const response = await fetch('/api/delete', {
         method: "Delete",
         body: JSON.stringify(messageContent)
     })
     if (response.ok) {
-        location.reload()
+
     }
     return await response.json();
 }
 
 
-const Index = (userMessages) => {
-    const [content, setContent] = useState(userMessages.messages)
+export default function Index ({initialMessages}) {
+    const [content, setContent] = useState(initialMessages)
     console.log(content)
     const input = useRef(null)
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [inputValue, setInputValue] = useState("")
-
     // handler
     const handleSubmitText = async function () {
-        await savedMessage(inputValue)
-        setContent([...content, inputValue])
+        await savedMessage(
+            {
+                message : inputValue,
+                browserInfo : browserName
+            }
+        )
+        setContent([...content ,   {
+            message : inputValue,
+            browserInfo : browserName
+        } ])
         setInputValue("")
         location.href = `#${content.length - 1}`;
         input.current.focus();
     }
-
     const showModal = () => {
         setIsModalVisible(true);
     };
@@ -69,6 +79,7 @@ const Index = (userMessages) => {
 
     useEffect(() => {
         // setTimeout(showModal , 10000)
+
     }, [])
     return (
 
@@ -89,10 +100,13 @@ const Index = (userMessages) => {
                     :
                     content.map((item, index) => {
                         return (
-                            <span onClick={() => deleteMessage(item.message)} id={index + 1}
+                            <span  id={index + 1}
                                   key={index}>{item.message ? item.message : item.toString()}
-                                <div>
+                                <div className={style.deleteIcon}>
+                                    <span onClick={()=>{
+                                        deleteMessage(item.message)
 
+                                    }}><CloseOutlined /></span>
                                 </div>
                             </span>
                         )
@@ -129,4 +143,3 @@ const Index = (userMessages) => {
 }
 
 
-export default Index
