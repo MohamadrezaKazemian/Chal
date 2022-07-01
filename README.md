@@ -1,12 +1,7 @@
-تکنولوژی های استفاده شده : 
-Frontend : Nextjs framework - ant design library
-Backend : Prisma - nodeJs
+Used technologies: 
+  Frontend: Nextjs/ant
+  Backend: Prisma/nodeJs
 
-برای شروع برنامه این مراحل را طی کنید : 
-
-مرحله اول : 
-در کامند لاین این کد را وارد نمایید :  yarn
-
-مرحله دوم : 
-در کامند لاین این کد را وارد نمایید yarn dev
-
+How to use: 
+  1- type 'yarn' in command line
+  2- type 'yarn dev' in command line
