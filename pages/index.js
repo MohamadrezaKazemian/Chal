@@ -32,15 +32,16 @@ async function savedMessage(message) {
 }
 //here we delete the message by Index
 async function deleteMessage(messageContent , setContent , index , content) {
-    const response = await fetch('/api/delete', {
-        method: "Delete",
-        body: JSON.stringify(messageContent)
-    })
-    if (response.ok) {
-        //here we are deleteing the message from our array if response was ok. if you know a better way just tell me please
-        setContent(content.filter((x , y)=> y !== index))
+    try {
+        await fetch('/api/delete', {
+            method: "Delete",
+            body: JSON.stringify(messageContent)
+        })
+        // get new message array
+        // setContent(content.filter((x , y)=> y !== index))
+    } catch (error) {
+        throw new error
     }
-    return await response.json();
 }
 //the page content function
 export default function Index ({initialMessages}) {
@@ -89,9 +90,9 @@ export default function Index ({initialMessages}) {
             >         {
                 content.length < 1 ?
                     <div className={style.firstTime}>
-                        <h1 className={style.preTitle}>چال کن خو یکم : )</h1>
+                        <h1 className={style.preTitle}>برنامه هات رو اینجا بنویس : )</h1>
                         <div className={style.arrow}>
-                            <h2>از اینجا میتونی اولین پیامتو بنویسی!</h2>
+                            <h2>از اینجا میتونی اولین برنامت رو بنویسی!</h2>
                             <img src={"http://assets.stickpng.com/images/58f8bcf70ed2bdaf7c128307.png"}/>
                         </div>
                     </div>
