@@ -8,6 +8,7 @@ import {motion} from "framer-motion"
 import {PrismaClient} from '@prisma/client';
 import {CloseOutlined} from '@ant-design/icons'; //close icon for the note
 import {browserName} from "react-device-detect"; //this component will show us the user browser
+
 const prisma = new PrismaClient();
 
 
