@@ -1,6 +1,6 @@
 Used technologies: 
-Frontend: Nextjs/ant
-Backend: Prisma/nodeJs
+  Frontend: Nextjs/ant
+  Backend: Prisma/nodeJs
 
 How to use: 
 1- type 'yarn' in command line
