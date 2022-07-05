@@ -6,22 +6,21 @@ import 'antd/dist/antd.css';
 import React from 'react'
 import {motion} from "framer-motion"
 import {PrismaClient} from '@prisma/client';
-import {CloseOutlined} from '@ant-design/icons'; //close icon for the note
-import {browserName} from "react-device-detect"; //this component will show us the user browser
+import {CloseOutlined} from '@ant-design/icons';
+import {browserName} from "react-device-detect";
 
 const prisma = new PrismaClient();
 
 
-//Getting messages from database
 export async function getServerSideProps() {
-    const userMessages = await prisma.user.findMany(); //getting data with prisma
+    const userMessages = await prisma.user.findMany();
     return {
         props: {
             initialMessages: userMessages
         }
     }
 }
-//this function would save the message in database with POST method
+
 async function savedMessage(message) {
     const response = await fetch('/api/contacts', {
         method: "POST",
@@ -32,7 +31,7 @@ async function savedMessage(message) {
     }
     return await response.json();
 }
-//here we delete the message by Index
+
 async function deleteMessage(messageContent , setContent , index , content) {
     try {
         await fetch('/api/delete', {
@@ -45,7 +44,7 @@ async function deleteMessage(messageContent , setContent , index , content) {
         throw new error
     }
 }
-//the page content function
+
 export default function Index ({initialMessages}) {
     const [content, setContent] = useState(initialMessages)
     console.log(content)
@@ -80,7 +79,6 @@ export default function Index ({initialMessages}) {
 
     useEffect(() => {
         // setTimeout(showModal , 10000)
-
     }, [])
     return (
 
