@@ -1,4 +1,4 @@
 const images = {
-    wall : require("../assests/images/wall.jpg").default,
-    stickyNote : require("../assests/images/stickyNote.png").default,
+    wall : require("../assets/images/wall.jpg").default,
+    stickyNote : require("../assets/images/stickyNote.png").default,
 }
