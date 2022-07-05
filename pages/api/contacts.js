@@ -1,10 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-
-import { PrismaClient, Prisma, } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method not allowed' });
   }
@@ -14,7 +12,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(200).json(savedMessage)
     res.json("wqe")
 
-  } catch (err){
+  } catch (err) {
     res.status(400).json({ message: err });
   }
 };
