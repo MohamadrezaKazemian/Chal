@@ -9,6 +9,8 @@ import { PrismaClient } from '@prisma/client';
 import style from "../style/index.module.scss"
 import 'antd/dist/antd.css';
 
+import Intro from '../components/Intro.js'
+
 const prisma = new PrismaClient();
 
 export async function getServerSideProps() {
@@ -86,14 +88,8 @@ export default function Index ({initialMessages}) {
                 transition={{duration: 2, type: "tween"}}
                 className={style.messages}
             >      
-                {content.length < 1 ?
-                    <section className={style.firstTime}>
-                        <h1 className={style.preTitle}>برنامه هات رو اینجا بنویس : )</h1>
-                        <div className={style.arrow}>
-                            <h2>از اینجا میتونی اولین برنامت رو بنویسی!</h2>
-                            <img src={"http://assets.stickpng.com/images/58f8bcf70ed2bdaf7c128307.png"}/>
-                        </div>
-                    </section>
+                {content.length <= 0 ?
+                    <Intro />
                     :
                     content.map((item, index) => (
                         <span 
