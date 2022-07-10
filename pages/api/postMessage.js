@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require('@prisma/client')
 
 const prisma = new PrismaClient();
 
@@ -8,11 +8,10 @@ export default async (req, res) => {
   }
   try {
     const messageData = JSON.parse(req.body);
-    const savedMessage = await prisma.user.create({ data: messageData });
+    const savedMessage = await prisma.message.create({ data: messageData });
     res.status(200).json(savedMessage)
     res.json("wqe")
-
-  } catch (err) {
-    res.status(400).json({ message: err });
+  } catch (error) {
+    res.status(404).json({ message: error });
   }
 };
