@@ -159,6 +159,8 @@
 }
 
 .firstTime {
+  direction: rtl;
+
   .preTitle {
     display: flex;
     justify-content: center;
@@ -167,43 +169,29 @@
     background: azure;
     padding: 10px;
     margin-top: 10%;
-    @media only screen and (max-width: 768px){
+    @media only screen and (max-width: 768px) {
       font-size: 16px;
     }
   }
-  .arrow {
+
+  .lazy {
+    cursor: url("../assets/images/lazy.png"), url("../assets/images/lazy.png"), default;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    @media only screen and (max-width: 768px){
+    @media only screen and (max-width: 768px) {
       font-size: 12px !important;
       display: flex;
       flex-direction: column;
     }
-    h2{
-      background: ghostwhite;
-      padding: 20px;
-      border-radius: 20px;
+    .lazyImage{
+      transition: all 0.3s ease-in-out;
+      cursor: url("../assets/images/lazy.png"), url("../assets/images/lazy.png"), default;
+      &:hover{
+        transform: translate(0px,40px);
+      }
     }
-    img {
-      width: 100%;
-      max-width: 500px;
-    }
-  }
-  @media only screen and (max-width: 768px){
-    display: flex;
-    flex-direction: column;
   }
 }
 
-.modal {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  img {
-    cursor: pointer;
-  }
-}

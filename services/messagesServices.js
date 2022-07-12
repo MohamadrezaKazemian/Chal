@@ -1,7 +1,7 @@
 const BASE_URL = '/'
 
 export const httpGetMessages = async () => {
-    const response = await fetch(`${BASE_URL}api/getMessages`)
+    const response = await fetch(`/api/getMessages`)
     return response.json()
 }
 
