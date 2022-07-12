@@ -28,8 +28,7 @@ ________________________________________________________________________________
 
 Open the .env file and replace the dummy connection URL with the connection URL of your PostgreSQL database. For example, if your database is hosted on <a href="https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-heroku" target="_blank">Heroku</a>, the URL might look as follows:
 
-<i>// .env
+// .env
 DATABASE_URL="postgresql://giwuzwpdnrgtzv:d003c6a604bb400ea955c3abd8c16cc98f2d909283c322ebd8e9164b33ccdb75@ec2-54-170-123-247.eu-west-.compute.amazonaws.com:5432/d6ajekcigbuca9"
-</i>
 
 Note: If your database is hosted on <a href="https://www.prisma.io/docs/guides/deployment/deployment-guides/deploying-to-heroku" target="_blank">Heroku</a>, you can directly copy the connection URL when viewing the credentials of your database as described here.
