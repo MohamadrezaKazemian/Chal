@@ -1,10 +1,11 @@
 import { useState, useRef, useEffect } from "react";
 import { browserName } from "react-device-detect";
+import Image from 'next/image'
+import images from "../public/images"
 
-import { Button, Input, Form, Modal } from 'antd';
+import {Button, Input, Form , Tooltip} from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { motion } from "framer-motion"
-
 import style from "../style/index.module.scss"
 import 'antd/dist/antd.css';
 
@@ -81,6 +82,9 @@ export default function Index () {
                 autoComplete="off"
                 className={style.form}
             >
+                <Tooltip title={"Donate"}>
+                <a href={"https://zarinp.al/437264"} target={"_blank"}><Image src={images.donateIcon} /> </a>
+                </Tooltip>
                 <Input 
                     ref={input} 
                     required={true} 
@@ -90,26 +94,6 @@ export default function Index () {
                 <Button htmlType="submit" type="primary">ارسال</Button>
             </Form>
 
-            {/* <Modal 
-                title="Support!" 
-                visible={isModalVisible} 
-                onOk={handleOk} 
-                onCancel={handleCancel} 
-                footer={null}
-                forceRender={false}
-            >
-                <section className={style.modal}>
-                    <h1>Support us!</h1>
-                    <div>
-                        <a href="google.com">
-                            <img 
-                                width={100} 
-                                src={"https://rmhccnaz.org/wp-content/uploads/Donate-Icon-01.png"}
-                            />
-                        </a>
-                    </div>
-                </section>
-            </Modal> */}
         </div>
     )
 }
