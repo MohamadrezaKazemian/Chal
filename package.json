@@ -1,8 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "generate": "npx prisma generate",
-    "dev": "npx prisma generate && next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },

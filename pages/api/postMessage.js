@@ -12,6 +12,6 @@ export default async (req, res) => {
     res.status(200).json(savedMessage)
     res.json("wqe")
   } catch (error) {
-    res.status(404).json({ message: error });
+    res.status(404).json({ message: error + "qwe" });
   }
 };

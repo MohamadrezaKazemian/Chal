@@ -3,19 +3,18 @@ import { browserName } from "react-device-detect";
 import Image from 'next/image'
 import images from "../public/images"
 
-import {Button, Input, Form , Tooltip} from 'antd';
+import {Button, Input, Form , Tooltip , Spin } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
 import { motion } from "framer-motion"
 import style from "../style/index.module.scss"
 import 'antd/dist/antd.css';
 
 import Intro from '../components/Intro.js'
-
+ 
 import useMessages from '../hooks/useMessages'
 
 export default function Index () {
-    const { messages, postMessage, deleteMessage } = useMessages();
-
+    const { messages, postMessage, deleteMessage,loading } = useMessages();
     const input = useRef(null)
     const [inputValue, setInputValue] = useState("")
     
@@ -32,7 +31,8 @@ export default function Index () {
     const handleDeleteMessage = (id) => {
         deleteMessage(id)
     }
-    
+
+
     // const [isModalVisible, setIsModalVisible] = useState(false);
     // const handleOk = () => {
     //     setIsModalVisible(false);
@@ -46,30 +46,34 @@ export default function Index () {
     // useEffect(() => {
     //     setTimeout(showModal , 10000)
     // }, [])
-
     return (
         <div className={style.chatRoom}>
             <motion.path
                 animate={{pathLength: 1}}
                 transition={{duration: 2, type: "tween"}}
                 className={style.messages}
-            >      
-                {messages.length <= 0 ?
-                    <Intro />
-                    :
-                    messages.map((message, i) => (
-                        <span 
-                            id={i + 1}
-                            key={i}
-                        >
+            >
+                {
+                    loading === true? <div className={style.loader}>
+                            <Spin size="large" />
+                        </div> :
+                        messages.length <= 0 ?
+                            <Intro />
+                            :
+                            messages?.map((message, i) => (
+                                <span
+                                    id={i + 1}
+                                    key={i}
+                                >
                             {message.message ? message.message : message.toString()}
-                            <div className={style.deleteIcon}>
+                                    <div className={style.deleteIcon}>
                                 <span onClick={()=>{handleDeleteMessage(message.id)}}>
                                     <CloseOutlined />
                                 </span>
                             </div>
                         </span>
-                    ))
+                            ))
+
                 }
             </motion.path>
 

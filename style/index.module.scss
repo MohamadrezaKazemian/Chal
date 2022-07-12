@@ -147,7 +147,7 @@
     left: 0;
     a{
       width: 100%;
-      max-width: 50px;
+      max-width: 40px;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
       &:hover{
@@ -163,6 +163,13 @@
     button {
       border-radius: 5px;
     }
+  }
+  .loader{
+    position: absolute;
+    bottom: 50%;
+    top: 50%;
+    right: 50%;
+    left: 50%;
   }
 }
 
@@ -194,10 +201,12 @@
       flex-direction: column;
     }
     .lazyImage{
+      display: flex;
+      justify-content: center;
       transition: all 0.3s ease-in-out;
       cursor: url("../assets/images/lazy.png"), url("../assets/images/lazy.png"), default;
       &:hover{
-        transform: translate(0px,40px);
+        transform: rotate(4deg);
       }
     }
   }
