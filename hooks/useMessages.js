@@ -5,7 +5,7 @@ import { httpGetMessages, httpDeleteMessage, httpPostMessage } from '../services
 export default () => {
     const [messages, setMessages] = useState([]);
     const [loading , setLoading] = useState(true)
-
+    console.log(loading)
     const getMessages = useCallback(async () => {
         const fetchedMessages = await httpGetMessages();
         setMessages(fetchedMessages);
@@ -13,13 +13,12 @@ export default () => {
     }, []);
 
     const postMessage = useCallback(async (message) => {
-        setLoading(true)
          try {
             await httpPostMessage(message)
             getMessages()
-             setLoading(false)
         } catch (error) {
-            throw new Error(error)
+            throw new Error("this is the error : " + error )
+             console.log(error)
         }
     }, [getMessages])
 

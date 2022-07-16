@@ -10,8 +10,8 @@ export default async (req, res) => {
     const messageData = JSON.parse(req.body);
     const savedMessage = await prisma.message.create({ data: messageData });
     res.status(200).json(savedMessage)
-    res.json("wqe")
+
   } catch (error) {
-    res.status(404).json({ message: error + "qwe" });
+    res.status(500).json({ message: error });
   }
 };
